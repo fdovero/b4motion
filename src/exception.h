@@ -1,8 +1,8 @@
 /*
  * exception.h
  *
- *  Created on: 26 janv. 2011
- *      Author: Fabien Dovero
+ *
+ *
  */
 
 #ifndef B4MEXCEPTION_H_

@@ -1,8 +1,8 @@
 /*
  * exception.cpp
  *
- *  Created on: 26 janv. 2011
- *      Author: Fabien Dovero
+ *
+ *
  */
 
 #include "exception.h"
