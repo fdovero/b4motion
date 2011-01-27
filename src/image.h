@@ -8,7 +8,7 @@
 #ifndef B4MIMAGE_H_
 #define B4MIMAGE_H_
 
-#include "cv.h"
+#include <cv.h>
 
 namespace b4m
 {

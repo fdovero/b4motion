@@ -5,9 +5,9 @@
  *
  */
 
-#include "camera.h"
+#include <camera.h>
 #include <sstream>
-#include "exception.h"
+#include <exception.h>
 
 namespace b4m
 {
