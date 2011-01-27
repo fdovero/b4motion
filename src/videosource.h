@@ -9,7 +9,7 @@
 #define B4MVIDEOSOURCE_H_
 
 #include <string>
-#include "image.h"
+#include "frame.h"
 
 namespace b4m
 {
