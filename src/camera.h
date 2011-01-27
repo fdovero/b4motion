@@ -1,8 +1,8 @@
 /*
  * camera.h
  *
- *  Created on: 25 janv. 2011
- *      Author: Fabien Dovero
+ *
+ *
  */
 
 #ifndef B4MCAMERA_H_
