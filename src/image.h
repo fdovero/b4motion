@@ -1,27 +1,27 @@
 /*
- * frame.h
+ * image.h
  *
- *  Created on: 25 janv. 2011
- *      Author: Fabien Dovero
+ *
+ *
  */
 
-#ifndef B4MFRAME_H_
-#define B4MFRAME_H_
+#ifndef B4MIMAGE_H_
+#define B4MIMAGE_H_
 
 #include "cv.h"
 
 namespace b4m
 {
-     class Frame
+     class Image
      {
          public :
              // Constructeur
-             Frame( IplImage* img = 0 ) : mIplimg( img ){
+             Image( IplImage* img = 0 ) : mIplimg( img ){
 
              }
 
              // Destructeur
-             virtual ~Frame(){
+             virtual ~Image(){
                  mIplimg=0;
              }
 
@@ -56,4 +56,4 @@ namespace b4m
      };
 }
 
-#endif /* B4MFRAME_H_ */
+#endif /* B4MIMAGE_H_ */
