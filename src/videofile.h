@@ -9,7 +9,7 @@
 #define VIDEOFILE_H_
 
 #include <highgui.h>
-#include <videosource.h>
+#include "videosource.h"
 
 namespace b4m
 {

@@ -5,9 +5,9 @@
  *
  */
 
-#include <videofile.h>
-#include <exception.h>
-#include <utils.h>
+#include "videofile.h"
+#include "exception.h"
+#include "utils.h"
 #include <sstream>
 namespace b4m
 {
@@ -50,7 +50,7 @@ using namespace std;
         oss << "Fichier " << nomFichier << " (" << mFrameRate << "fps, ";
         oss << cvGetCaptureProperty( mCapture, CV_CAP_PROP_FRAME_WIDTH ) << "x";
         oss << cvGetCaptureProperty( mCapture, CV_CAP_PROP_FRAME_HEIGHT );
-        oss << ", Lecture " << ( mRealtime ? "Temps Reel" : "Exhaustive" );
+        oss << ", Lecture " << ( mRealtime ? "Temps Reel)" : "Exhaustive)" );
 
         mInfos = oss.str();
         mDebut = getTimeMillis();

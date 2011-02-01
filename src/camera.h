@@ -8,6 +8,7 @@
 #ifndef B4MCAMERA_H_
 #define B4MCAMERA_H_
 
+#include "videosource.h"
 #include <highgui.h>
 
 namespace b4m
@@ -30,7 +31,7 @@ namespace b4m
             // Lecture (héritée)
             virtual void getFrame( Image &frame );
 
-            // Ouverture surchargée ;)
+            // Ouverture surchargée
             void open( int index );
 
         private:
