@@ -19,13 +19,17 @@
 #include "exception.h"
 #include "utils.h"
 #include <sstream>
+#include <iostream>
+
 namespace b4m
 {
 using namespace std;
 
     // Constructeur
     VideoFile::VideoFile( string &nomFichier, bool tempsReel )
-        : mRealtime( tempsReel ), mFilePath( nomFichier ) {}
+        : mRealtime( tempsReel ), mFilePath( nomFichier ) {
+
+    }
 
     // Destructeur
     VideoFile::~VideoFile() {
@@ -52,7 +56,8 @@ using namespace std;
         cvGrabFrame( mCapture );
         cvRetrieveFrame( mCapture );
 
-        mFrameRate = cvGetCaptureProperty( mCapture, CV_CAP_PROP_FPS );
+        //mFrameRate = cvGetCaptureProperty( mCapture, CV_CAP_PROP_FPS ); Retourne un framerate de 0 ??
+        mFrameRate = 25;
         mFilePath = nomFichier;
         mRealtime = tempsReel;
 
@@ -85,14 +90,15 @@ using namespace std;
 
     // Sélection de frame (mode exhaustif)
     void VideoFile::selectNextFrame() {
-        if(! cvGrabFrame( mCapture ))
+        if( !cvGrabFrame( mCapture ) ) {
             throw Exception( EX_MESSAGE, "Fin du fichier atteinte" );
+        }
 
         mLastGrabbed++;
     }
 
     // Sélection de frame (mode temps réel)
-    void VideoFile::selectCurrentFrame( ) {
+    void VideoFile::selectCurrentFrame() {
         long long position_ms = ( getTimeMillis() - mDebut );
 
         if( !cvSetCaptureProperty( mCapture, CV_CAP_PROP_POS_MSEC, position_ms ) ) {
@@ -107,6 +113,7 @@ using namespace std;
                 selectNextFrame();
             }
         }
+
         selectNextFrame();
     }
 }

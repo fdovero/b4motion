@@ -15,14 +15,15 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "exception.h"
-#include "image.h"
-#include "videofile.h"
-#include "camera.h"
-#include "utils.h"
+#include "../../B4motion/exception.h"
+#include "../../B4motion/image.h"
+#include "../../B4motion/videofile.h"
+#include "../../B4motion/camera.h"
+#include "../../B4motion/utils.h"
 #include <iostream>
 #include <iomanip>
 
+using namespace std;
 using namespace b4m;
 
 long long debut_mesure;
@@ -49,7 +50,7 @@ int main( int argc, char* argv[])
 
     if( argc > 1 ) {
         // Initialisation : fichier vidéo
-        std::string path(argv[1]);
+        string path(argv[1]);
         src = new VideoFile( path, (argc > 2) );
     }
     else {
@@ -63,13 +64,13 @@ int main( int argc, char* argv[])
     }
     catch( Exception &e ) {
         // Si une exception se produit, on l'affiche et on quitte.
-        std::cout << e.what() << std::endl;
+        cout << e.what() << endl;
         delete src;
         return 10;
     }
 
     // Si tout va bien, on affiche les informations du flux vidéo.
-    std::cout << src->getInfos() << std::endl;
+    cout << src->getInfos() << endl;
 
     cvNamedWindow( "video", CV_WINDOW_AUTOSIZE );
     Image img;
@@ -83,19 +84,19 @@ int main( int argc, char* argv[])
             src->getFrame( img );
         }
         catch(Exception &e) {
-            std::cout << "\n" << e.what() << std::endl;
+            cout << "\n" << e.what() << endl;
             break;
         }
         cvShowImage( "video", img );
         key = cvWaitKey( 10 );
 
         // Affichage du frame rate
-        std::cout << "\rFrame Rate : " << std::setw(5);
-        std::cout << std::left << std::setprecision(4);
-        std::cout << calculFrameRate() << " FPS" << std::flush;
+        cout << "\rFrame Rate : " << setw(5);
+        cout << left << setprecision(4);
+        cout << calculFrameRate() << " FPS" << flush;
     }
 
-    std::cout << std::endl;
+    cout << endl;
     cvDestroyWindow( "video" );
     delete src;
     return 0;
