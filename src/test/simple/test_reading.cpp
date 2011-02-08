@@ -15,11 +15,11 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "../../B4motion/exception.h"
-#include "../../B4motion/image.h"
-#include "../../B4motion/videofile.h"
-#include "../../B4motion/camera.h"
-#include "../../B4motion/utils.h"
+#include "../../b4m/exception.h"
+#include "../../b4m/image.h"
+#include "../../b4m/videofile.h"
+#include "../../b4m/camera.h"
+#include "../../b4m/utils.h"
 #include <iostream>
 #include <iomanip>
 

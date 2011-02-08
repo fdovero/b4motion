@@ -56,8 +56,7 @@ using namespace std;
         cvGrabFrame( mCapture );
         cvRetrieveFrame( mCapture );
 
-        //mFrameRate = cvGetCaptureProperty( mCapture, CV_CAP_PROP_FPS ); Retourne un framerate de 0 ??
-        mFrameRate = 25;
+        mFrameRate = cvGetCaptureProperty( mCapture, CV_CAP_PROP_FPS );
         mFilePath = nomFichier;
         mRealtime = tempsReel;
 
@@ -91,7 +90,7 @@ using namespace std;
     // Sélection de frame (mode exhaustif)
     void VideoFile::selectNextFrame() {
         if( !cvGrabFrame( mCapture ) ) {
-            throw Exception( EX_MESSAGE, "Fin du fichier atteinte" );
+            throw Exception( EX_MESSAGE, "End Of File" );
         }
 
         mLastGrabbed++;
