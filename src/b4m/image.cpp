@@ -14,43 +14,43 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
-#ifndef B4MIMAGE_H_
-#define B4MIMAGE_H_
-
 #include <cv.h>
+#include "image.h"
 
 namespace b4m
 {
-     class Image
-     {
-         public :
+	//Constructeur
+	Image::Image ( IplImage* img ):mIplimg( img ) {
 
-    	 	 // Constructeur
-             Image( IplImage* img = 0);
+	}
 
-             // Destructeur
-             virtual ~Image();
+	//Destructeur
+	Image::~Image () {
+		 mIplimg=0;
+	}
 
-             // Getter
-             IplImage* ipl() const;
+	// Getter
+	IplImage* Image::ipl() const {
+		return mIplimg;
+	}
 
-             // Setter
-             void setIpl( IplImage* img );
+	// Setter
+	void Image::setIpl( IplImage* img ) {
+		mIplimg = img;
+	}
 
-             // Désallocation
-             void release();
+	// Désallocation
+	void Image::release() {
+		cvReleaseImage( &mIplimg );
+	}
 
-             // Affectation
-             void operator=(IplImage* img);
+	// Affectation
+	void Image::operator=(IplImage* img) {
+		mIplimg = img;
+	}
 
-             // Cast
-             operator IplImage *() const;
-
-         protected:
-             // L'IplImage* encapsulé
-             IplImage* mIplimg;
-     };
+	// Cast
+	Image::operator IplImage *() const {
+		return mIplimg;
+	}
 }
-
-#endif /* B4MIMAGE_H_ */
