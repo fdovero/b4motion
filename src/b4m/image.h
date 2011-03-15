@@ -47,6 +47,9 @@ namespace b4m
              // Cast
              operator IplImage *() const;
 
+             //Filtre de couleur
+             void colorFilter( CvScalar teint );
+
          protected:
              // L'IplImage* encapsulé
              IplImage* mIplimg;

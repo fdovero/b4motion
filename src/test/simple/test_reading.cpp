@@ -87,6 +87,11 @@ int main( int argc, char* argv[])
             cout << "\n" << e.what() << endl;
             break;
         }
+        CvScalar scalaire;
+        scalaire.val[0] = 120;
+        scalaire.val[1] = scalaire.val[2] = 0;
+        img.colorFilter(scalaire);
+
         cvShowImage( "video", img );
         key = cvWaitKey( 10 );
 

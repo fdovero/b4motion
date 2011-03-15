@@ -53,4 +53,18 @@ namespace b4m
 	Image::operator IplImage *() const {
 		return mIplimg;
 	}
+
+	// Filtre de couleur
+	void Image::colorFilter( CvScalar teint) {
+		for(int x=0; x < mIplimg->width; x++) {
+			for(int y=0; y < mIplimg->height; y++) {
+				CvScalar pix = cvGet2D(mIplimg, y, x);
+				for(int z=0; z < 3; z++)
+				{
+					pix.val[z] = pix.val[z]+teint.val[z];
+				}
+				cvSet2D(mIplimg, y, x, pix);
+			}
+		}
+	}
 }
