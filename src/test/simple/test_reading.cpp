@@ -29,6 +29,9 @@ using namespace b4m;
 long long debut_mesure;
 long long fin_mesure;
 
+CvPoint top_left= cvPoint(360,280);
+CvPoint bottom_right= cvPoint(360,280);
+
 double calculFrameRate() {
 
     // On récupère l'heure actuelle
@@ -47,6 +50,14 @@ int main( int argc, char* argv[])
 {
     // On déclare notre pointeur sur SourceVideo
     VideoSource *src;
+    CvVideoWriter *writer = 0;
+    int isColor = 1;
+    int fps     = 30;  // or 30
+    int frameW  = 640; // 744 for firewire cameras
+    int frameH  = 480; // 480 for firewire cameras
+    writer=cvCreateVideoWriter("out.avi",CV_FOURCC('P','I','M','1'),
+                                   fps,cvSize(frameW,frameH),isColor);
+
 
     if( argc > 1 ) {
         // Initialisation : fichier vidéo
@@ -87,12 +98,29 @@ int main( int argc, char* argv[])
             cout << "\n" << e.what() << endl;
             break;
         }
-        CvScalar scalaire;
+        /*CvScalar scalaire;
         scalaire.val[0] = 120;
         scalaire.val[1] = scalaire.val[2] = 0;
-        img.colorFilter(scalaire);
+        img.colorFilter(scalaire);*/
+
+        img.colorPaint2(top_left,bottom_right);
+        if (bottom_right.x < 720) {
+        	bottom_right.x++;
+        }
+        if (bottom_right.y < 576) {
+        	bottom_right.y++;
+        }
+        if (top_left.x > 0) {
+        	top_left.x--;
+        }
+        if (top_left.y > 0) {
+        	top_left.y--;
+        }
+
+        //img.colorBlacknWhite();
 
         cvShowImage( "video", img );
+        cvWriteFrame(writer,img);
         key = cvWaitKey( 10 );
 
         // Affichage du frame rate

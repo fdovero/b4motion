@@ -59,12 +59,90 @@ namespace b4m
 		for(int x=0; x < mIplimg->width; x++) {
 			for(int y=0; y < mIplimg->height; y++) {
 				CvScalar pix = cvGet2D(mIplimg, y, x);
-				for(int z=0; z < 3; z++)
-				{
+				for(int z=0; z < 3; z++) {
 					pix.val[z] = pix.val[z]+teint.val[z];
 				}
 				cvSet2D(mIplimg, y, x, pix);
 			}
+		}
+	}
+
+	// Inversion B&W
+	void Image::colorBlacknWhite() {
+		for(int x=0; x < mIplimg->width; x++) {
+					for(int y=0; y < mIplimg->height; y++) {
+						CvScalar pix = cvGet2D(mIplimg, y, x);
+						for(int z=0; z < 3; z++) {
+							pix.val[z] = 255-pix.val[z];
+						}
+						cvSet2D(mIplimg, y, x, pix);
+					}
+		}
+	}
+
+	// Peindre en couleur dominante du pixel
+	void Image::colorPaint() {
+		for(int x=0; x < mIplimg->width; x++) {
+					for(int y=0; y < mIplimg->height; y++) {
+						CvScalar pix = cvGet2D(mIplimg, y, x);
+						if(pix.val[0]>pix.val[1] && pix.val[0]>pix.val[2]) {
+							pix.val[0]=255;
+							pix.val[1]=pix.val[2]=0;
+						}
+						if(pix.val[1]>pix.val[0] && pix.val[1]>pix.val[2]) {
+							pix.val[1]=255;
+							pix.val[0]=pix.val[2]=0;
+						}
+						if(pix.val[2]>pix.val[1] && pix.val[2]>pix.val[1]) {
+							pix.val[2]=255;
+							pix.val[0]=pix.val[1]=0;
+						}
+						cvSet2D(mIplimg, y, x, pix);
+					}
+		}
+	}
+
+	// Peindre en couleur dominante du pixel
+	void Image::colorPaint(CvPoint top_left, CvPoint bottom_right) {
+		for(int x=top_left.x; x < bottom_right.x; x++) {
+					for(int y=top_left.y; y < bottom_right.y; y++) {
+						CvScalar pix = cvGet2D(mIplimg, y, x);
+						if(pix.val[0]>pix.val[1] && pix.val[0]>pix.val[2]) {
+							pix.val[0]=255;
+							pix.val[1]=pix.val[2]=0;
+						}
+						if(pix.val[1]>pix.val[0] && pix.val[1]>pix.val[2]) {
+							pix.val[1]=255;
+							pix.val[0]=pix.val[2]=0;
+						}
+						if(pix.val[2]>pix.val[1] && pix.val[2]>pix.val[1]) {
+							pix.val[2]=255;
+							pix.val[0]=pix.val[1]=0;
+						}
+						cvSet2D(mIplimg, y, x, pix);
+					}
+		}
+	}
+
+	// Peindre en couleur dominante du pixel
+	void Image::colorPaint2(CvPoint top_left, CvPoint bottom_right) {
+		for(int x=top_left.x; x < bottom_right.x; x++) {
+					for(int y=top_left.y; y < bottom_right.y; y++) {
+						CvScalar pix = cvGet2D(mIplimg, y, x);
+						if(pix.val[0]>pix.val[1] && pix.val[0]>pix.val[2]) {
+							pix.val[1]=pix.val[2]= 128 - pix.val[0];
+							pix.val[0]=255;
+						}
+						if(pix.val[1]>pix.val[0] && pix.val[1]>pix.val[2]) {
+							pix.val[0]=pix.val[2]= 128 - pix.val[1];
+							pix.val[1]=255;
+						}
+						if(pix.val[2]>pix.val[1] && pix.val[2]>pix.val[1]) {
+							pix.val[1]=pix.val[0]= 128 - pix.val[2];
+							pix.val[2]=255;
+						}
+						cvSet2D(mIplimg, y, x, pix);
+					}
 		}
 	}
 }

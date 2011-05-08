@@ -50,6 +50,18 @@ namespace b4m
              //Filtre de couleur
              void colorFilter( CvScalar teint );
 
+             //Inversion B&W
+             void colorBlacknWhite();
+
+             //Peindre en couleur dominante
+             void colorPaint();
+
+             //Peindre en couleur dominante
+             void colorPaint(CvPoint top_left, CvPoint bottom_right);
+
+             //Peindre en couleur dominante
+             void colorPaint2(CvPoint top_left, CvPoint bottom_right);
+
          protected:
              // L'IplImage* encapsulé
              IplImage* mIplimg;
